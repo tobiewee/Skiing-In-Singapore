@@ -3,30 +3,30 @@ package skiproblem;
 import java.util.ArrayList;
 
 public class Map {
-	private int width;
-	private int height;
+	private int rows;
+	private int cols;
 	private int length;
 	//private ArrayList map;
 	
 	public Map(){
-		width = 1;
-		height = 1;
+		rows = 1;
+		cols = 1;
 		length = 1;
 		//map = new ArrayList<ArrayList<Integer>>();
 	}
 	
-	public Map(int w, int h){
-		width = w;
-		height = h;
+	public Map(int r, int c){
+		rows = r;
+		cols = c;
 		length = 0;
 	}
 	
-	public int getWidth(){
-		return width;
+	public int getRows(){
+		return rows;
 	}
 	
-	public int getHeight(){
-		return height;
+	public int getCols(){
+		return cols;
 	}
 	
 	public int getLength(){
