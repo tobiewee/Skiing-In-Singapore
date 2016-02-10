@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+
 import skiproblem.Map;
 
 public class SkiSGSolver {
@@ -25,8 +27,10 @@ public class SkiSGSolver {
 		}
 	}
 	
-	private static void initMap(int row, int col){
-		skiMap = new Map(row, col);
+	private static void initMap(String [] tmp){
+		int rows = stringToInt(tmp[0]);
+		int cols = stringToInt(tmp[1]);
+		skiMap = new Map(rows, cols);
 	}
 	
 	private static String readLine(){
@@ -53,22 +57,27 @@ public class SkiSGSolver {
 		return Integer.parseInt(s);
 	}
 	
-	public static void readMapData(){
+	private static ArrayList<Integer> stringToRowData(String[] tmp){
+		ArrayList<Integer> rowData = new ArrayList<Integer>();
+		for(int i = 0; i < tmp.length; i++){
+			rowData.add(stringToInt(tmp[i]));
+		}
+		return rowData;
+	}
+	
+	private static void readMapData(){
 		String lineContent = null;
 		String [] tmp = null;
+		
 		while ((lineContent = readLine()) != null){
 			tmp = lineContent.split(" ");
 			if(currLineNo == 0){
-				int rows = stringToInt(tmp[0]);
-				int cols = stringToInt(tmp[1]);
-				initMap(rows, cols);
-				System.out.println(skiMap.getRows());
-				System.out.println(skiMap.getCols());
+				//initialize map
+				initMap(tmp);
+			} else{
+				//add ArrayList to map
+				skiMap.addRow(stringToRowData(tmp));
 			}
-			
-			//process map into arraylist
-			//add arraylist to map
-			System.out.println(lineContent);
 			currLineNo++;
 		}
 	}
@@ -76,6 +85,10 @@ public class SkiSGSolver {
 	public static void main(String[] args) throws Exception{
 		openFile("resources/map/map_4x4.txt");
 		readMapData();
+		//Look for a solution.
+		//skiMap.findSolution();
+		skiMap.printDimensions();
+		skiMap.printMapData();
 		closeFile();
 	}
 	
