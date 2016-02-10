@@ -85,11 +85,14 @@ public class SkiSGSolver {
 	public static void main(String[] args) throws Exception{
 		openFile("resources/map/map_4x4.txt");
 		readMapData();
-		//Look for a solution.
-		//skiMap.findSolution();
+		closeFile();
+		skiMap.findSolution();
+		
+		// Debugging
 		skiMap.printDimensions();
 		skiMap.printMapData();
-		closeFile();
+		skiMap.printHighestPoint();
+		skiMap.printLowestPoint();
 	}
 	
 }
