@@ -93,6 +93,7 @@ public class SkiSGSolver {
 		skiMap.printMapData();
 		skiMap.printHighestPoint();
 		skiMap.printLowestPoint();
+		skiMap.printSearchLimit();
 	}
 	
 }
