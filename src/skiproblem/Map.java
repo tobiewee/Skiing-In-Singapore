@@ -1,14 +1,12 @@
 package skiproblem;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-
 import skiproblem.MapPoint;
 
 public class Map {	
 	private int rows;
 	private int cols;
-	private int length;
+	private int maxDrop;
 	private ArrayList<ArrayList<Integer>> map;
 	
 	// Storing Highest and Lowest points in Map, as Start and End.
@@ -18,7 +16,7 @@ public class Map {
 	public Map(){
 		rows = 1;
 		cols = 1;
-		length = 1;
+		maxDrop = 0;
 		map = new ArrayList<ArrayList<Integer>>();
 		highest = new MapPoint();
 		lowest = new MapPoint();
@@ -27,7 +25,7 @@ public class Map {
 	public Map(int r, int c){
 		rows = r;
 		cols = c;
-		length = 0;
+		maxDrop = 0;
 		map = new ArrayList<ArrayList<Integer>>();
 		highest = new MapPoint();
 		lowest = new MapPoint();
@@ -41,8 +39,8 @@ public class Map {
 		return cols;
 	}
 	
-	public int getLength(){
-		return length;
+	public int getMaxDrop(){
+		return maxDrop;
 	}
 	
 	public void addRow(ArrayList<Integer> newRow){
@@ -84,9 +82,14 @@ public class Map {
 		}
 	}
 	
+	private void findSearchLimit(){
+		maxDrop = highest.getPointValue() - lowest.getPointValue();
+	}
+	
 	public void findSolution(){
 		//Perform tasks here.
 		findHighestAndLowest();
+		findSearchLimit();
 	}
 	
 	/*
@@ -115,5 +118,9 @@ public class Map {
 	
 	public void printLowestPoint(){
 		System.out.println("Lowest Point: " + lowest.getPointValue());
+	}
+	
+	public void printSearchLimit(){
+		System.out.println("Largest possible drop (Search Limit): " + maxDrop);
 	}
 }
